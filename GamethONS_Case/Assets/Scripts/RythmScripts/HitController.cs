@@ -7,7 +7,7 @@ public class HitController : MonoBehaviour
     private SpriteRenderer sr;
     [SerializeField] private Color32 pressedColor = new Color32(200, 200, 200, 255);
     [SerializeField] private Color32 unpressedColor = new Color32(255, 255, 255, 255);
-    [SerializeField] private KeyCode keyToPress = KeyCode.Z; 
+    [SerializeField] public KeyCode keyToPress = KeyCode.Z; 
 
     void Start()
     {

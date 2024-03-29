@@ -20,7 +20,14 @@ public class NoteObject : MonoBehaviour
         Vector3 hitPosition  = hit.transform.position;
         float distanceDifference = Mathf.Abs(hitPosition.x - beatPosition.x);
         if(distanceDifference <= 2)
-            GetComponent<BeatScroller>().hasStarted = false;
+            hittable = true;
+        else
+            hittable = false;
+
+        if(hittable && Input.GetKeyDown(hit.keyToPress))
+        {
+            gameObject.SetActive(false);
+        }
         
     }
 }
