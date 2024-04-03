@@ -7,10 +7,12 @@ public class NoteObject : MonoBehaviour
 {
     public bool hittable = false;
     private HitController hit;
+    private MusicYo musicPlayer;
 
     void Start()
     {
         hit = FindObjectOfType<HitController>();
+        musicPlayer = FindObjectOfType<MusicYo>();
     }
 
     // Update is called once per frame
@@ -28,16 +30,16 @@ public class NoteObject : MonoBehaviour
         if(hittable && (Input.GetKeyDown(hit.keyToPress) || Input.GetKeyDown(hit.keyToPress2)))
         {
             gameObject.SetActive(false);
-            //MusicYo.instance.NoteHit();
-            MusicYo.instance.NoteHit();
+            //musicPlayer.NoteHit();
+            musicPlayer.NoteHit();
         }
-        
     }
+
     void OnTriggerEnter2D(Collider2D other) {
         hittable = true;
     }
     void OnTriggerExit2D(Collider2D other) {
         hittable = false;
-        MusicYo.instance.NoteMiss();
+        musicPlayer.NoteMiss();
     }
 }

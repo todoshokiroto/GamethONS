@@ -26,12 +26,18 @@ public class MusicYo : MonoBehaviour
             }
         }
         */
-        
     }
+
+
+    public void PlayMusic(){
+        instance.music.Play();
+    }
+
+
     public void NoteHit(){
         Debug.Log("Hell YEAH");
-
     }
+
     public void NoteMiss(){
         Debug.Log("O MAYY GAAA");
     }

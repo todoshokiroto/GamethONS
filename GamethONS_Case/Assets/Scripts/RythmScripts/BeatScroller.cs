@@ -5,7 +5,7 @@ using UnityEngine;
 public class Beatscroller : MonoBehaviour
 {
     public float  beatTempo = 60;
-    public bool hasStarted;
+    public bool hasStarted = false;
 
     void Start()
     {
@@ -17,9 +17,10 @@ public class Beatscroller : MonoBehaviour
     {
         if(!hasStarted)
         {
-            if(Input.anyKeyDown)
+            if(Input.anyKeyDown){
+                FindObjectOfType<MusicYo>().PlayMusic();
                 hasStarted = true;
-                MusicYo.instance.music.Play();
+            }
         }
         else 
         {
