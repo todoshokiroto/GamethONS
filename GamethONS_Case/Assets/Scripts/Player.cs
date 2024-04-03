@@ -11,10 +11,15 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private float moveVelocity;
 
+    public int vidaMax = 10;
+    public int vidaAtual;
+
     
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        vidaAtual = vidaMax;
     }
 
     private void Update()
@@ -37,5 +42,15 @@ public class Player : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         isGrounded = false;
+    }
+
+    public void AplicaDano(int dano)
+    {
+        vidaAtual -= dano;
+        Debug.Log("Chegamo aqui" + dano);   
+        if( vidaAtual <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
