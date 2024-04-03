@@ -8,6 +8,9 @@ public class MusicYo : MonoBehaviour
     public bool startPlaying;
     public Beatscroller beatScroller;
     public static MusicYo instance;
+
+    private float noteTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,11 @@ public class MusicYo : MonoBehaviour
         //         music.Play();
         //     }
         // }
+    }
+
+    public static double GetAudioTime(){
+        // return (double) instance.music.timeSamples / instance.music.clip.frequency;
+        return instance.music.time;
     }
 
 

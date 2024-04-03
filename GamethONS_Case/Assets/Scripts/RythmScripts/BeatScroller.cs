@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Beatscroller : MonoBehaviour
 {
-    public float  beatTempo = 60;
-    public bool hasStarted = false;
+    public static float  beatTempo = 60;
+    public bool hasStarted;
 
     void Start()
     {
         beatTempo = beatTempo * 4 / 60f;
+        hasStarted = FindFirstObjectByType<MusicYo>().music.isPlaying;
     }
 
     // Update is called once per frame
