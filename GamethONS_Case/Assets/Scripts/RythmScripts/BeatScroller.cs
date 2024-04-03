@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BeatScroller : MonoBehaviour
+public class Beatscroller : MonoBehaviour
 {
     public float  beatTempo = 60;
     public bool hasStarted;
@@ -19,6 +19,7 @@ public class BeatScroller : MonoBehaviour
         {
             if(Input.anyKeyDown)
                 hasStarted = true;
+                MusicYo.instance.music.Play();
         }
         else 
         {

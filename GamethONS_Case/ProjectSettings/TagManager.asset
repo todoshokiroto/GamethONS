@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Beats
+    uniqueID: 1169035569
+    locked: 0
