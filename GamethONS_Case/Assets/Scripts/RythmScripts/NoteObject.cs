@@ -8,7 +8,7 @@ public class NoteObject : MonoBehaviour
     public bool hittable = false;
     private HitController hit;
     private MusicYo musicPlayer;
-
+    public int id = 0;
     void Start()
     {
         hit = FindObjectOfType<HitController>();
@@ -37,6 +37,8 @@ public class NoteObject : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) {
         hittable = true;
+        //id+=1;
+        Debug.Log(id);
     }
     void OnTriggerExit2D(Collider2D other) {
         hittable = false;

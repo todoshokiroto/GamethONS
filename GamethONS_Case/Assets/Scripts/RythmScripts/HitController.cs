@@ -9,19 +9,30 @@ public class HitController : MonoBehaviour
     [SerializeField] private Color32 unpressedColor = new Color32(255, 255, 255, 255);
     [SerializeField] public KeyCode keyToPress  = KeyCode.Z; 
     [SerializeField] public KeyCode keyToPress2 = KeyCode.X; 
+    private NoteObject[] beats;
 
     void Start()
-    {
+    {   beats = FindObjectsOfType<NoteObject>();
         sr = GetComponent<SpriteRenderer>();
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         if(Input.GetKeyDown(keyToPress)||Input.GetKeyDown(keyToPress2))
             sr.color = pressedColor;
         else if(Input.GetKeyUp(keyToPress)||Input.GetKeyUp(keyToPress2))
             sr.color = unpressedColor;
     }
+    /*
+    Vector3 CompareArray(){
+        Vector3 lastPosition;
+        foreach(beat in beats){
+            float actualDiference = Mathf.Abs(transform.position.x - beatPosition.x)
+            if(position > lastPosition)
+            lastPosition = position;
+        }
+        return lastPosition;
+    }
+    */
 }

@@ -17,15 +17,13 @@ public class MusicYo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if(!startPlaying){
-            if(Input.anyKeyDown){
-                startPlaying = true;
-                beatScroller.hasStarted = true;
-                music.Play();
-            }
-        }
-        */
+        // if(!startPlaying){
+        //     if(Input.anyKeyDown){
+        //         startPlaying = true;
+        //         beatScroller.hasStarted = true;
+        //         music.Play();
+        //     }
+        // }
     }
 
 
