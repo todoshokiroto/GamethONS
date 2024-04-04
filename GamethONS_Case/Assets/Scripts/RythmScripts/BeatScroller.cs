@@ -6,7 +6,7 @@ public class Beatscroller : MonoBehaviour
 {
     public float  beatTempo = 60;
     public bool hasStarted;
-
+    public AudioSource music;
     void Start()
     {
         beatTempo = beatTempo * 4 / 60f;
@@ -19,7 +19,7 @@ public class Beatscroller : MonoBehaviour
         {
             if(Input.anyKeyDown)
                 hasStarted = true;
-                MusicYo.instance.music.Play();
+                music.Play();
         }
         else 
         {

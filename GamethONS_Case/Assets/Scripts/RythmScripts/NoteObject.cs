@@ -29,7 +29,7 @@ public class NoteObject : MonoBehaviour
         {
             gameObject.SetActive(false);
             //MusicYo.instance.NoteHit();
-            MusicYo.instance.NoteHit();
+            Debug.Log("Sim");
         }
         
     }
@@ -38,6 +38,6 @@ public class NoteObject : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other) {
         hittable = false;
-        MusicYo.instance.NoteMiss();
+        Debug.Log("Errou");
     }
 }
