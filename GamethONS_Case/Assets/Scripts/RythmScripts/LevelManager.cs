@@ -10,17 +10,19 @@ using System;
 public class LevelManager : MonoBehaviour
 {
     
+    private float startDelay;                               // in seconds
     public static LevelManager Instance;
     public string filePath;
     public static MidiFile midiFile;
-    public static double timeSinceStarted = 0;
+    public static double timeSinceStarted = 0;              // in seconds
+    public static bool hasLevelStarted = false;
+    public static float Bpm = 60f;
 
     void Start()
     {
         Instance = this;
-        // if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
-        //     ReadFromWebsite();
-        // else
+        // beatTempo = midiFile.GetTempoMap().GetTempoAtTime(???); // <-- para tentar fazer no futuro futuro
+        startDelay = LaneObject.spawnX / (Bpm * 4 / 60f);
         midiFile = ReadFromMidiFileDisc();
     }
 
@@ -29,6 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         return MidiFile.Read(Application.dataPath + "/" + filePath);
     }
+
 
     public static Melanchall.DryWetMidi.Interaction.Note[] GetDataFromMidi()
     {
@@ -39,19 +42,19 @@ public class LevelManager : MonoBehaviour
         return array;
     }
 
-    // private IEnumerator ReadFromWebsite(string fileLocation)
-    // {
-    //     using (UnityWebRequest www = UnityWebRequest.Get(Application.streamingAssetsPath + "/" + filePath))
-    //     {
-    //         yield return www.SendWebRequest();
-    //     }
 
-    // }
-
-    // Update is called once per frame
     void Update()
     {
-        if(Beatscroller.hasStarted)
+        if(hasLevelStarted)
             timeSinceStarted += Time.deltaTime;
+
+            
+        if(!hasLevelStarted)
+        {
+            if(Input.anyKeyDown){
+                FindObjectOfType<SoundManager>().Invoke("PlayMusic", startDelay);
+                hasLevelStarted = true;
+            }
+        }
     }
 }

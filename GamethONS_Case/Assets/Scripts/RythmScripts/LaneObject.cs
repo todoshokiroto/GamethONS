@@ -7,32 +7,27 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 using System.Linq;
+// using Melanchall.DryWetMidi.Interaction.TempoMap;
 // using Melanchall.DryWetMidi.MusicTheory;
 
 public class LaneObject : MonoBehaviour
 {
-    public List<double> timeStamps = new List<double>(); // em segundos
-    
-    public float noteSpeed;
     public int spawnIndex = 0;
     public static float spawnX = 8;
-    // private Dictionary<string, float> spawnPosition = new Dictionary<string, float>(); 
+    public List<double> timeStamps = new List<double>(); // in seconds
 
     public GameObject notePrefab;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         Vector3 beatToHitDistance = new Vector3(spawnX, 0f, 0f);
-        // spawnPosition.Add("x", hit.transform.position.x + beatToHitDistance);
-        // spawnPosition.Add("y", hit.transform.position.y);
         transform.position = FindObjectOfType<HitController>().transform.position + beatToHitDistance;
 
-        noteSpeed = beatToHitDistance.x / FindAnyObjectByType<Beatscroller>().beatTempo;
         SetTimeStamps(LevelManager.GetDataFromMidi());
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if(spawnIndex < timeStamps.Count){

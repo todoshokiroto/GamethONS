@@ -4,25 +4,28 @@ using UnityEngine;
 
 public class HitController : MonoBehaviour
 {
-    private SpriteRenderer sr;
     [SerializeField] private Color32 pressedColor = new Color32(200, 200, 200, 255);
     [SerializeField] private Color32 unpressedColor = new Color32(255, 255, 255, 255);
     [SerializeField] public KeyCode keyToPress  = KeyCode.Z; 
     [SerializeField] public KeyCode keyToPress2 = KeyCode.X; 
-    private NoteObject[] beats;
+
+    private BeatObject[] beats;
+    private SpriteRenderer spriteRenderer;
+
 
     void Start()
-    {   beats = FindObjectsOfType<NoteObject>();
-        sr = GetComponent<SpriteRenderer>();
+    {   beats = FindObjectsOfType<BeatObject>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
 
     void Update()
     {
 
         if(Input.GetKeyDown(keyToPress)||Input.GetKeyDown(keyToPress2))
-            sr.color = pressedColor;
+            spriteRenderer.color = pressedColor;
         else if(Input.GetKeyUp(keyToPress)||Input.GetKeyUp(keyToPress2))
-            sr.color = unpressedColor;
+            spriteRenderer.color = unpressedColor;
     }
     /*
     Vector3 CompareArray(){
