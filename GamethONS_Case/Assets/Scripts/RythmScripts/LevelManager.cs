@@ -11,37 +11,28 @@ public class LevelManager : MonoBehaviour
 {
     
     public static LevelManager Instance;
-    public AudioSource audioSource;
-    public float songDelay;
-    public int inputDelay;
-
     public string filePath;
-    public float noteTime;
-    public float noteSpawnY;
-    public float noteTapY;
-    public float noteDespawnY;
-
     public static MidiFile midiFile;
+    public static double timeSinceStarted = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         Instance = this;
         // if (Application.streamingAssetsPath.StartsWith("http://") || Application.streamingAssetsPath.StartsWith("https://"))
         //     ReadFromWebsite();
         // else
-        midiFile = ReadFromDisc();
+        midiFile = ReadFromMidiFileDisc();
     }
 
 
-    private MidiFile ReadFromDisc()
+    private MidiFile ReadFromMidiFileDisc()
     {
         return MidiFile.Read(Application.dataPath + "/" + filePath);
     }
 
     public static Melanchall.DryWetMidi.Interaction.Note[] GetDataFromMidi()
     {
-        midiFile = FindObjectOfType<LevelManager>().ReadFromDisc();
+        midiFile = FindObjectOfType<LevelManager>().ReadFromMidiFileDisc();
         var notes = midiFile.GetNotes();
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(array, 0);
@@ -60,6 +51,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Beatscroller.hasStarted)
+            timeSinceStarted += Time.deltaTime;
     }
 }

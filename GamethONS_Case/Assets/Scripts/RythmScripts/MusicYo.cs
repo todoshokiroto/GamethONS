@@ -8,15 +8,15 @@ public class MusicYo : MonoBehaviour
     [SerializeField] public AudioSource music;
     public bool startPlaying;
     public Beatscroller beatScroller;
-    [SerializeField] private float startDelay = 4f;
+    private float startDelay;
     public static MusicYo instance;
 
-    private float noteTime;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        startDelay = FindAnyObjectByType<LaneObject>().noteSpeed;
     }
 
     // Update is called once per frame
@@ -32,13 +32,12 @@ public class MusicYo : MonoBehaviour
     }
 
     public static double GetAudioTime(){
-        // return (double) instance.music.timeSamples / instance.music.clip.frequency;
-        return instance.music.time;
+        return (double) instance.music.timeSamples / instance.music.clip.frequency;
+        // return instance.music.time;
     }
 
 
-    public IEnumerator PlayMusic(){
-        yield return new WaitForSeconds(startDelay);
+    public void PlayMusic(){
         instance.music.Play();
     }
 

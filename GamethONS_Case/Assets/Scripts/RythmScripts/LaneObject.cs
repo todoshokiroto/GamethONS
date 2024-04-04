@@ -13,8 +13,9 @@ public class LaneObject : MonoBehaviour
 {
     public List<double> timeStamps = new List<double>(); // em segundos
     
-    private float noteSpeed;
+    public float noteSpeed;
     public int spawnIndex = 0;
+    public static float spawnX = 8;
     // private Dictionary<string, float> spawnPosition = new Dictionary<string, float>(); 
 
     public GameObject notePrefab;
@@ -22,12 +23,12 @@ public class LaneObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 beatToHitDistance = new Vector3(8f, 0f, 0f);
+        Vector3 beatToHitDistance = new Vector3(spawnX, 0f, 0f);
         // spawnPosition.Add("x", hit.transform.position.x + beatToHitDistance);
         // spawnPosition.Add("y", hit.transform.position.y);
         transform.position = FindObjectOfType<HitController>().transform.position + beatToHitDistance;
 
-        noteSpeed = beatToHitDistance.x / FindAnyObjectByType<Beatscroller>().beatTempo*Time.deltaTime;
+        noteSpeed = beatToHitDistance.x / FindAnyObjectByType<Beatscroller>().beatTempo;
         SetTimeStamps(LevelManager.GetDataFromMidi());
     }
 
@@ -35,9 +36,9 @@ public class LaneObject : MonoBehaviour
     void Update()
     {
         if(spawnIndex < timeStamps.Count){
-            if(MusicYo.GetAudioTime() >= timeStamps[spawnIndex] - noteSpeed*Time.deltaTime)
+            if(LevelManager.timeSinceStarted >= timeStamps[spawnIndex])
             {
-                var note = Instantiate(notePrefab, transform.position, new Quaternion(0,0,0,0),  transform);
+                Instantiate(notePrefab, transform.position, new Quaternion(0,0,0,0),  transform);
                 spawnIndex++;
             }
         }

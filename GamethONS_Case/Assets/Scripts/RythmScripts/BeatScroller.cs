@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class Beatscroller : MonoBehaviour
 {
-    public float  beatTempo = 60;
-    public bool hasStarted = false;
-
-    // void Awake()
-    // {
-    //     beatTempo = beatTempo * 4 / 60f;
-    //     hasStarted = FindFirstObjectByType<MusicYo>().music.isPlaying;
-
-    // }
+    public float  beatTempo = 60f;
+    public static bool hasStarted = false;
+    private float startDelay;
 
     void Start()
     {
-        beatTempo = beatTempo * 4 / 60f;
-        hasStarted = FindFirstObjectByType<MusicYo>().music.isPlaying;
+        beatTempo  = beatTempo * 4 / 60f;
+        startDelay = LaneObject.spawnX/beatTempo;
     }
 
     // Update is called once per frame
@@ -26,7 +20,7 @@ public class Beatscroller : MonoBehaviour
         if(!hasStarted)
         {
             if(Input.anyKeyDown){
-                StartCoroutine(FindObjectOfType<MusicYo>().PlayMusic());
+                FindObjectOfType<MusicYo>().Invoke("PlayMusic", startDelay);
                 hasStarted = true;
             }
         }

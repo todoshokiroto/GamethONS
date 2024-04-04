@@ -152,14 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b110b8937560f64439493cf10214e707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  songDelay: 0
-  inputDelay: 0
   filePath: Music/teste.mid
-  noteTime: 0
-  noteSpawnY: 0
-  noteTapY: 0
-  noteDespawnY: 0
 --- !u!4 &342748900
 Transform:
   m_ObjectHideFlags: 0
@@ -280,7 +273,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dcda343b485deff459e00a5533f2b6a7, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -380,7 +373,6 @@ MonoBehaviour:
   music: {fileID: 872681680}
   startPlaying: 0
   beatScroller: {fileID: 0}
-  startDelay: 4.09
 --- !u!1 &947771021
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,6 +696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeStamps: []
+  noteSpeed: 0
   spawnIndex: 0
   notePrefab: {fileID: 9123869895241608418, guid: 1149a9818c837904eaabb905031f0927, type: 3}
 --- !u!212 &1296262767
