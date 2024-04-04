@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d469c958b8e1342bbb2a69b7286e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  music: {fileID: 709801808}
+  music: {fileID: 0}
   startPlaying: 0
   beatScroller: {fileID: 0}
 --- !u!4 &872681679

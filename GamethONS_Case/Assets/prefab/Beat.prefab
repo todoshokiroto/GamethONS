@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755926782ba8ef4a890bd85d05c2b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatTempo: 64
+  beatTempo: 60
   hasStarted: 0
 --- !u!114 &4225404596510887912
 MonoBehaviour:
@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hittable: 0
+  id: 0
 --- !u!50 &4563586715490075418
 Rigidbody2D:
   serializedVersion: 4

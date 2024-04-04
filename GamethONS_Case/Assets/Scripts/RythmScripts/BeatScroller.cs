@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Beatscroller : MonoBehaviour
 {
-    public static float  beatTempo = 60;
-    public bool hasStarted;
+    public float  beatTempo = 60;
+    public bool hasStarted = false;
+
+    // void Awake()
+    // {
+    //     beatTempo = beatTempo * 4 / 60f;
+    //     hasStarted = FindFirstObjectByType<MusicYo>().music.isPlaying;
+
+    // }
 
     void Start()
     {
@@ -19,7 +26,7 @@ public class Beatscroller : MonoBehaviour
         if(!hasStarted)
         {
             if(Input.anyKeyDown){
-                FindObjectOfType<MusicYo>().PlayMusic();
+                StartCoroutine(FindObjectOfType<MusicYo>().PlayMusic());
                 hasStarted = true;
             }
         }

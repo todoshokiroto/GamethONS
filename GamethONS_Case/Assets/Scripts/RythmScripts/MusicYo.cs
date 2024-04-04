@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MusicYo : MonoBehaviour
 {
-    public AudioSource music;
+    [SerializeField] public AudioSource music;
     public bool startPlaying;
     public Beatscroller beatScroller;
+    [SerializeField] private float startDelay = 4f;
     public static MusicYo instance;
 
     private float noteTime;
@@ -35,7 +37,8 @@ public class MusicYo : MonoBehaviour
     }
 
 
-    public void PlayMusic(){
+    public IEnumerator PlayMusic(){
+        yield return new WaitForSeconds(startDelay);
         instance.music.Play();
     }
 

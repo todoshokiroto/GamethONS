@@ -22,12 +22,12 @@ public class LaneObject : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 beatToHitDistance = new Vector3(5f, 0f, 0f);
+        Vector3 beatToHitDistance = new Vector3(8f, 0f, 0f);
         // spawnPosition.Add("x", hit.transform.position.x + beatToHitDistance);
         // spawnPosition.Add("y", hit.transform.position.y);
         transform.position = FindObjectOfType<HitController>().transform.position + beatToHitDistance;
 
-        noteSpeed = beatToHitDistance.x / Beatscroller.beatTempo*Time.deltaTime;
+        noteSpeed = beatToHitDistance.x / FindAnyObjectByType<Beatscroller>().beatTempo*Time.deltaTime;
         SetTimeStamps(LevelManager.GetDataFromMidi());
     }
 
@@ -35,11 +35,9 @@ public class LaneObject : MonoBehaviour
     void Update()
     {
         if(spawnIndex < timeStamps.Count){
-            Debug.Log("spawnIndex < timeStamps.Count");
             if(MusicYo.GetAudioTime() >= timeStamps[spawnIndex] - noteSpeed*Time.deltaTime)
             {
-                Debug.Log("MusicYo.GetAudioTime()");
-                var note = Instantiate(notePrefab, transform);
+                var note = Instantiate(notePrefab, transform.position, new Quaternion(0,0,0,0),  transform);
                 spawnIndex++;
             }
         }
