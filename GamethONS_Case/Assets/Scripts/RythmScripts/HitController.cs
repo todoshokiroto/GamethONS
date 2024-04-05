@@ -26,16 +26,21 @@ public class HitController : MonoBehaviour
             spriteRenderer.color = pressedColor;
         else if(Input.GetKeyUp(keyToPress)||Input.GetKeyUp(keyToPress2))
             spriteRenderer.color = unpressedColor;
+        Debug.Log(CompareArray());
     }
-    /*
-    Vector3 CompareArray(){
-        Vector3 lastPosition;
-        foreach(beat in beats){
-            float actualDiference = Mathf.Abs(transform.position.x - beatPosition.x)
-            if(position > lastPosition)
-            lastPosition = position;
+float CompareArray()
+    {
+        
+        float position = Mathf.Abs(transform.position.x - beats[0].transform.position.x);
+        foreach(BeatObject beat in beats)
+        {
+            float actualDiference = Mathf.Abs(transform.position.x - beat.transform.position.x);
+
+            if(position > actualDiference)
+            {
+                position = actualDiference;
+            }  
         }
-        return lastPosition;
+        return position;
     }
-    */
 }

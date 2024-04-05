@@ -52,4 +52,5 @@ public class BeatObject : MonoBehaviour
         hittable = false;
         musicPlayer.PlayNoteMissSfx();
     }
+
 }
