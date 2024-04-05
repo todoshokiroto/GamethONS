@@ -152,7 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b110b8937560f64439493cf10214e707, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: Music/teste.mid
+  musicStartDelay: 0
+  midiFilePath: Music/alvamar.mid
+  bpm: 132
+  beatsPerMeasure: 4
+  measuresPerEncounter: 2
+  measuresForEncounters: 000000000400000008000000
 --- !u!4 &342748900
 Transform:
   m_ObjectHideFlags: 0
@@ -211,7 +216,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dcda343b485deff459e00a5533f2b6a7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bfc00c2c235803b459e34fb91c24b6bc, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -310,6 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   music: {fileID: 872681680}
+  songStartingTime: 6.75
 --- !u!1 &947771021
 GameObject:
   m_ObjectHideFlags: 0

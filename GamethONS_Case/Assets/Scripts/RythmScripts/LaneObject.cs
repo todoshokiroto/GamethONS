@@ -33,7 +33,8 @@ public class LaneObject : MonoBehaviour
         if(spawnIndex < timeStamps.Count){
             if(LevelManager.timeSinceStarted >= timeStamps[spawnIndex])
             {
-                Instantiate(notePrefab, transform.position, new Quaternion(0,0,0,0),  transform);
+                if(LevelManager.isEncounterHappening)
+                    Instantiate(notePrefab, transform.position, new Quaternion(0,0,0,0),  transform);
                 spawnIndex++;
             }
         }

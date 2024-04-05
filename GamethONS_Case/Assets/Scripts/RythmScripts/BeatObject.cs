@@ -16,7 +16,7 @@ public class BeatObject : MonoBehaviour
 
     void Start()
     {
-        noteSpeed = LevelManager.Bpm * 4 / 60f;
+        noteSpeed = FindObjectOfType<LevelManager>().bpm * 4 / 60f;
         hit = FindObjectOfType<HitController>();
         musicPlayer = FindObjectOfType<SoundManager>();
     }

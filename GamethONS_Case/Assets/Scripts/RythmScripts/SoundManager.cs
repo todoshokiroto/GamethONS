@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
 {
     [SerializeField] public AudioSource music;
     public static SoundManager instance;
+    [SerializeField] private float songStartingTime = 0f;
 
 
     // Start is called before the first frame update
@@ -27,15 +28,16 @@ public class SoundManager : MonoBehaviour
 
 
     public void PlayMusic(){
+        instance.music.time = songStartingTime;
         instance.music.Play();
     }
 
 
     public void PlayNoteHitSfx(){
-        Debug.Log("Hell YEAH");
+        // Debug.Log("Hell YEAH");
     }
 
     public void PlayNoteMissSfx(){
-        Debug.Log("O MAYY GAAA");
+        // Debug.Log("O MAYY GAAA");
     }
 }
