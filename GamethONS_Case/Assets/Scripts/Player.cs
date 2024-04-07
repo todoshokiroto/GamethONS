@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
             const float lowerVSpeed = .5f;
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * lowerVSpeed);
         }
+
+        Flip();
     }
 
     private void FixedUpdate()
