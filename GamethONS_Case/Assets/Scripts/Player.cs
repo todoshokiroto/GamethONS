@@ -4,46 +4,60 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 10;
-    [SerializeField] private float jumpSpeed = 7;
-
-    private Rigidbody2D rb;
-    private bool isGrounded;
-    private float moveVelocity;
-
     public int vidaMax = 10;
     public int vidaAtual;
+    
+    private float horizontal;
+    private bool isFacingRight = true;
+    
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float jumpForce = 16f;
+
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private LayerMask groundLayer;
 
     
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         vidaAtual = vidaMax;
     }
 
     private void Update()
     {
-        if (isGrounded)
+        horizontal = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Jump") && IsGrounded())
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        else if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
-            if (Input.GetKeyDown(KeyCode.Z))
-                rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            // O tanto que vai diminuir da velocidade.y, para q o pulo seja maior quando se segura o botao de pulo.
+            const float lowerVSpeed = .5f;
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * lowerVSpeed);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
+
+    private void Flip()
+    {
+        if (!(isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)) return;
         
-        float hDirection = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(hDirection * walkSpeed, rb.velocity.y);
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private bool IsGrounded()
     {
-        isGrounded = true;
+        const float radius = .2f;
+        return Physics2D.OverlapCircle(groundCheck.position, radius, groundLayer);
     }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        isGrounded = false;
-    }
-
+    
     public void AplicaDano(int dano)
     {
         vidaAtual -= dano;
