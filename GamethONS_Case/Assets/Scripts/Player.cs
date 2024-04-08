@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     
     private float horizontal;
     private bool isFacingRight = true;
+
+    private bool hasPacoca = false;
     
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpForce = 16f;
@@ -36,6 +38,14 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * lowerVSpeed);
         }
 
+        if (hasPacoca)
+        {
+            Vector3 ls = transform.localScale;
+            ls.x = Mathf.Sign(ls.x) * 1.5f;
+            transform.localScale = ls;
+        }
+        
+        
         Flip();
     }
 
@@ -68,5 +78,22 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void GetPowerUp(PowerUps powerUp)
+    {
+        switch (powerUp)
+        {
+            case PowerUps.Pacoca:
+                hasPacoca = true;
+                Debug.Log("Pegou paçoca!");
+                break;
+        }
+    }
+
+    [Serializable]
+    public enum PowerUps
+    {
+        Pacoca
     }
 }
