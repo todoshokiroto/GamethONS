@@ -37,4 +37,7 @@ public class ScriptGalinha : MonoBehaviour
             logic.subtraiVida();
         }
     }
+    private void OnCollisionExit2D(Collision2D other) {
+        StartCoroutine(LevelManager.Instance.StartEncounter());
+    }
 }
